@@ -25,7 +25,24 @@ public class MarkdownParse {
             if(openBracket < 0 || closeBracket < 0 || openParen < 0 || closeParen < 0) {
                 break;
             }
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
+            //check to make sure link is not an image
+            Boolean isImage = false;
+            if(openBracket != 0){
+                String type = markdown.substring(openBracket - 1, openBracket);
+                isImage = type.equals("!"); 
+            }
+             //check that link follows format []()
+             int format = openParen - closeBracket;
+             Boolean linkFollowsFormat = true;
+             if(format != 1) {
+                 linkFollowsFormat = false;
+             }
+             //check that link is a valid link
+             String link = markdown.substring(openParen + 1, closeParen);
+             Boolean linkIsValid = link.contains(" ");
+            if(isImage == false && linkIsValid == false && linkFollowsFormat == true && !(link.isEmpty())) {
+                toReturn.add(link);
+            }
             currentIndex = closeParen + 1;  
             sc.hasNextLine();
         }
