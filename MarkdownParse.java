@@ -39,6 +39,7 @@ public class MarkdownParse {
              }
              //check that link is a valid link
              String link = markdown.substring(openParen + 1, closeParen);
+             System.out.println(link);
              Boolean linkIsValid = link.contains(" ");
             if(isImage == false && linkIsValid == false && linkFollowsFormat == true && !(link.isEmpty())) {
                 toReturn.add(link);
