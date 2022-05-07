@@ -11,10 +11,10 @@ public class MarkdownParseTest {
         assertEquals(2, 1 + 1);
     }
     @Test
-    public void MarkdownParseTest() throws IOException{
+    public void firstMarkdownTest() throws IOException {
         Path fileName = Path.of("test-file.md");
         String content = Files.readString(fileName);
-        assertEquals(List.of("https://something.com", "some-thing.html"), 
-        MarkdownParse.getLinks(content));
+        assertEquals(List.of("https://something.com","some-thing.html"),
+            MarkdownParse.getLinks(content));
     }
 }
